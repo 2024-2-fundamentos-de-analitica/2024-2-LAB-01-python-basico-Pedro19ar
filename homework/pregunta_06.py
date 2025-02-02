@@ -9,9 +9,9 @@ utilizar pandas, numpy o scipy.
 def pregunta_06():
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras
-    corresponde a una clave y el valor despues del caracter `:` corresponde al
-    valor asociado a la clave. Por cada clave, obtenga el valor asociado mas
-    pequeño y el valor asociado mas grande computados sobre todo el archivo.
+    corresponde a una clave y el valor después del carácter `:` corresponde al
+    valor asociado a la clave. Por cada clave, obtenga el valor asociado más
+    pequeño y el valor asociado más grande computados sobre todo el archivo.
 
     Rta/
     [('aaa', 1, 9),
@@ -24,5 +24,32 @@ def pregunta_06():
      ('hhh', 0, 9),
      ('iii', 0, 9),
      ('jjj', 5, 17)]
-
     """
+    file_path = "files/input/data.csv"  # Ruta del archivo
+
+    # Diccionario para almacenar los valores asociados a cada clave
+    key_values = {}
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file:
+            columns = line.strip().split("\t")  # Asumiendo que los datos están separados por tabulaciones
+            if len(columns) >= 5:
+                key_value_pairs = columns[4].split(",")  # Extraer los pares clave-valor
+                
+                for pair in key_value_pairs:
+                    key, value = pair.split(":")  # Separar clave y valor
+                    value = int(value)  # Convertir el valor a entero
+                    
+                    if key not in key_values:
+                        key_values[key] = []
+                    
+                    key_values[key].append(value)
+
+    # Construir la lista de tuplas con la clave, valor mínimo y valor máximo
+    result = [(key, min(values), max(values)) for key, values in sorted(key_values.items())]
+
+    return result
+
+# Llamada a la función
+print(pregunta_06())
+

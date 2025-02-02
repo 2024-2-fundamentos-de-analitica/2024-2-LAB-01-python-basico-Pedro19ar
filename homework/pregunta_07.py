@@ -23,5 +23,29 @@ def pregunta_07():
      (7, ['A', 'C', 'E', 'D']),
      (8, ['E', 'D', 'E', 'A', 'B']),
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
-
     """
+    file_path = "files/input/data.csv"  # Ruta del archivo
+
+    # Diccionario para almacenar las letras asociadas a cada valor de la columna 2
+    value_to_letters = {}
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file:
+            columns = line.strip().split("\t")  # Asumiendo que los datos están separados por tabulaciones
+            if len(columns) >= 2:
+                letter = columns[0]  # Primera columna (letra)
+                value = int(columns[1])  # Segunda columna (valor numérico)
+                
+                if value not in value_to_letters:
+                    value_to_letters[value] = []
+                
+                value_to_letters[value].append(letter)
+
+    # Construir la lista de tuplas con el valor de la columna 2 y la lista de letras asociadas
+    result = sorted(value_to_letters.items())
+
+    return result
+
+# Llamada a la función
+print(pregunta_07())
+

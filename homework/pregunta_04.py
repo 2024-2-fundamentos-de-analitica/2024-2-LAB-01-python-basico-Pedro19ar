@@ -24,5 +24,20 @@ def pregunta_04():
      ('10', 2),
      ('11', 2),
      ('12', 3)]
-
     """
+    file_path = "files/input/data.csv"  # Ruta del archivo
+
+    month_count = {}
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file:
+            columns = line.strip().split("\t")  # Asumiendo que los datos están separados por tabulaciones
+            if len(columns) >= 3:
+                date = columns[2]  # Tercera columna (fecha)
+                month = date.split("-")[1]  # Extraer el mes
+                month_count[month] = month_count.get(month, 0) + 1
+
+    return sorted(month_count.items())
+
+print(pregunta_04())
+
