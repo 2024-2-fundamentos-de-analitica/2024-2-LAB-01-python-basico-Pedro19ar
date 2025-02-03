@@ -4,8 +4,6 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
-import glob
-import fileinput
 
 def pregunta_03():
     """
@@ -16,27 +14,18 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
-        # Inicializar un diccionario para almacenar la suma de la segunda columna para cada letra
-    letter_sums = {}
+    file_path = "files\input\data.csv"  # Ruta del archivo
 
-    # Abrir y leer el archivo línea por línea
-    with open("files\input\data.csv", 'r') as file:
+    letter_sum = {}
+
+    with open(file_path, "r", encoding="utf-8") as file:
         for line in file:
-            # Dividir la línea en columnas
-            columns = line.strip().split('\t')
-            letter = columns[0]  # Primera columna (letra)
-            number = int(columns[1])  # Segunda columna (número)
-            
-            # Actualizar la suma para la letra
-            if letter in letter_sums:
-                letter_sums[letter] += number
-            else:
-                letter_sums[letter] = number
+            columns = line.strip().split("\t")  # Asumiendo que los datos están separados por tabulaciones
+            if len(columns) >= 2:
+                letter = columns[0]  # Primera columna (letra)
+                value = int(columns[1])  # Segunda columna (valor)
+                letter_sum[letter] = letter_sum.get(letter, 0) + value
 
-    # Convertir el diccionario a una lista de tuplas ordenada alfabéticamente
-    result = sorted(letter_sums.items())
-
-    return result
-
+    return sorted(letter_sum.items())
 
 print(pregunta_03())
