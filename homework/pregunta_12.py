@@ -36,6 +36,7 @@ def pregunta_12():
 
     return result
 
+
 # Llamada a la función
 print(pregunta_12())
 
