@@ -31,7 +31,6 @@ def pregunta_11():
 
     # Ordenar el diccionario por clave alfabéticamente
     result = dict(sorted(letter_sums.items()))
-
     return result
 
 # Llamada a la función

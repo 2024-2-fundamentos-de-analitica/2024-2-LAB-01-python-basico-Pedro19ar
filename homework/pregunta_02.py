@@ -14,7 +14,7 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
-    file_path = "files\input\data.csv"  # Ruta del archivo
+    file_path = "files/input/data.csv"  # Ruta del archivo
 
     letter_count = {}
 
